@@ -1,0 +1,36 @@
+<h1>Search Fundraisers</h1>
+<form id="searchForm" (ngSubmit)="onSearch()">
+  <label for="organizer">Organizer:</label>
+  <input type="text" id="organizer" name="organizer" [(ngModel)]="searchParams.organizer">
+  <label for="city">City:</label>
+  <input type="text" id="city" name="city" [(ngModel)]="searchParams.city">
+  <label for="category">Category:</label>
+  <select id="category" name="category" [(ngModel)]="searchParams.category">
+    <option value="">Select Category</option>
+    <option value="1">Edication Fund</option>
+    <option value="2">Medical Fund</option>
+  </select>
+
+  <div style="display: flex; gap: 10px;">
+    <button type="submit">Search</button>
+    <button type="button" (click)="clearForm()">Clear</button>
+  </div>
+</form>
+<button type="button" id="backButton" (click)="goHome()">Home</button>
+<div id="searchResults">
+  <div *ngFor="let fundraiser of fundraisers">
+    <p><strong>ID:</strong> {{ fundraiser.FUNDRAISE_ID }}</p>
+    <p><strong>Organizer:</strong> {{ fundraiser.ORGANIZER }}</p>
+    <p><strong>Description:</strong> {{ fundraiser.CAPTION }}</p>
+    <p><strong>Target Funding:</strong> ${{ fundraiser.TARGET_FUNDING }}</p>
+    <p><strong>Current Funding:</strong> ${{ fundraiser.CURRENT_FUNDING }}</p>
+    <p><strong>City:</strong> {{ fundraiser.CITY }}</p>
+    <p><strong>Active:</strong> {{ fundraiser.ACTIVE ? 'Yes' : 'No' }}</p>
+    <p><strong>Category:</strong> {{ fundraiser.CATEGORY_NAME }}</p>
+    <a [routerLink]="['/fundraiser']" [queryParams]="{ id: fundraiser.FUNDRAISE_ID }">Details</a>
+  </div>
+</div>
+<div id="imageContainer">
+  <img style="margin-bottom: 45px;" src="picture1.jpg" id="search1">
+  <img style="margin-bottom: 45px;" src="picture2.jpg" id="search2">
+</div>

@@ -1,0 +1,50 @@
+
+
+
+<h1>Welcome to the admin Page</h1>
+
+<div style="display: flex; gap: 10px;">
+    <a href="/"><button>back</button></a>
+    
+    <a href="/search"><button>Search</button></a>
+
+    <a href="/addadmin"><button>Add</button></a>
+    
+</div>
+
+<table id="fundraiserTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Organizer</th>
+      <th>Caption</th>
+      <th>Target Funding</th>
+      <th>Current Funding</th>
+      <th>City</th>
+      <th>Active</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fundraiser of fundraisers">
+        <td>{{ fundraiser.FUNDRAISE_ID }}</td>
+        <td>{{ fundraiser.ORGANIZER }}</td>
+        <td>{{ fundraiser.CAPTION }}</td>
+        <td>{{ fundraiser.TARGET_FUNDING }}</td>
+        <td>{{ fundraiser.CURRENT_FUNDING }}</td>
+        <td>{{ fundraiser.CITY }}</td>
+        <td>{{ fundraiser.ACTIVE ? 'Active' : 'Inactive' }}</td>
+        <td>{{ fundraiser.CATEGORY_ID }}</td>
+      <td>
+        <a [routerLink]="['/fundraiser']" [queryParams]="{ id: fundraiser.FUNDRAISE_ID }">
+            <button>Details</button>
+        </a>
+        <a [routerLink]="['/addadmin']" [queryParams]="{ id: fundraiser.FUNDRAISE_ID }">
+            <button>Edit   </button>
+        </a>
+        <button type="button"  (click)="deleteFundraiser(fundraiser.FUNDRAISE_ID)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

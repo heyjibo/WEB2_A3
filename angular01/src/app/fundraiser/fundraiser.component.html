@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/mainstyle.css">
+</head>
+<body>
+<h1>Fundraiser Details</h1>
+
+<div style="display: flex; gap: 10px;">
+    <a [routerLink]="['/ownation']" [queryParams]="{ id: fundraiser.FUNDRAISE_ID }">
+        <button>Donate</button>
+    </a>
+  
+  <a href="/"><button >Back</button></a>
+</div>
+
+<div id="fundraiserDetails">
+  <h2>{{ fundraiser.ORGANIZER }}</h2>
+  <p>{{ fundraiser.CAPTION }}</p>
+  <p>Target Funding: {{ fundraiser.TARGET_FUNDING }}</p>
+  <p>Current Funding: {{ fundraiser.CURRENT_FUNDING }}</p>
+</div>
+
+<h2>Donations</h2>
+<table id="donationsTable">
+  <thead>
+    <tr>
+      <th>Donor Name</th>
+      <th>Donation Date</th>
+      <th>Donation Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let donation of donations">
+      <td>{{ donation.giver_name }}</td>
+      <td>{{ donation.date }}</td>
+      <td>{{ donation.amount }}</td>
+    </tr>
+  </tbody>
+</table>
+</body>
